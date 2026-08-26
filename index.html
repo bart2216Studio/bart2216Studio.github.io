@@ -3,131 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Bloquer le référencement Google -->
     <meta name="robots" content="noindex, nofollow">
-    
     <title>bart2216Studio | Mes Projets</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: system-ui, -apple-system, sans-serif;
-        }
-
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-        }
-
-        /* Grille adaptative : 4 colonnes sur PC, 1 sur mobile */
-        .projects-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            max-width: 1200px;
-            width: 100%;
-        }
-
-        /* Carte de projet */
-        .project-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* Image verticalisée (gris si pas d'image) */
-        .project-image {
-            width: 100%;
-            aspect-ratio: 9 / 14; /* Format vertical comme sur tes maquettes */
-            background-color: #555555;
-            border-radius: 8px;
-            object-fit: cover;
-            margin-bottom: 16px;
-            transition: transform 0.2s ease, background-color 0.2s ease;
-        }
-
-        .project-card:hover .project-image {
-            transform: scale(1.03);
-            background-color: #666666;
-        }
-
-        /* Titre et description */
-        .project-info {
-            text-align: center;
-        }
-
-        .project-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .project-desc {
-            font-size: 0.9rem;
-            color: #aaaaaa;
-            line-height: 1.3;
-        }
-
-        /* Mode mobile (Écran < 768px) */
-        @media (max-width: 768px) {
-            .projects-container {
-                grid-template-columns: 1fr; /* 1 seule colonne */
-                max-width: 320px; /* Largeur type mobile */
-            }
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+        body { background-color: #000000; color: #ffffff; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 40px 20px; }
+        .projects-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1200px; width: 100%; }
+        .project-card { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: inherit; }
+        .project-image { width: 100%; aspect-ratio: 9 / 14; background-color: #555555; border-radius: 8px; object-fit: cover; margin-bottom: 16px; transition: transform 0.2s ease, background-color 0.2s ease; }
+        .project-card:hover .project-image { transform: scale(1.03); background-color: #666666; }
+        .project-info { text-align: center; }
+        .project-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 6px; }
+        .project-desc { font-size: 0.9rem; color: #aaaaaa; line-height: 1.3; }
+        @media (max-width: 768px) { .projects-container { grid-template-columns: 1fr; max-width: 320px; } }
     </style>
 </head>
 <body>
-
     <main class="projects-container">
-
-        <!-- Projet 1 : Sound-Change -->
-        <a href="https://github.com/bart2216Studio/Sound-Change" class="project-card" target="_blank">
-            <!-- Mets le lien de ton image dans src="...", sinon la case reste grise -->
-            <img src="" alt="Sound-Change" class="project-image">
+        
+        <a href="http://bart2216studio.ddnsfree.com/" class="project-card" target="_blank">
+            <img src="​My goal: to transform level design into an intense and captivating psychological experience.https://bart2216studio.github.io/pv.png" alt="My Website (Studio)" class="project-image">
             <div class="project-info">
-                <h2 class="project-title">Sound-Change</h2>
-                <p class="project-desc">Courte description de ton projet Sound-Change ici.</p>
+                <h2 class="project-title">My Website (Studio)</h2>
+                <p class="project-desc">Horror game developer specializing in immersion and soundscape.</p>
             </div>
         </a>
-
-        <!-- Projet 2 -->
-        <a href="#" class="project-card">
-            <img src="" alt="Projet 2" class="project-image">
-            <div class="project-info">
-                <h2 class="project-title">Titre Projet 2</h2>
-                <p class="project-desc">Courte description du second projet.</p>
-            </div>
-        </a>
-
-        <!-- Projet 3 -->
-        <a href="#" class="project-card">
-            <img src="" alt="Projet 3" class="project-image">
-            <div class="project-info">
-                <h2 class="project-title">Titre Projet 3</h2>
-                <p class="project-desc">Courte description du troisième projet.</p>
-            </div>
-        </a>
-
-        <!-- Projet 4 -->
-        <a href="#" class="project-card">
-            <img src="" alt="Projet 4" class="project-image">
-            <div class="project-info">
-                <h2 class="project-title">Titre Projet 4</h2>
-                <p class="project-desc">Courte description du quatrième projet.</p>
-            </div>
-        </a>
-
     </main>
-
 </body>
 </html>
