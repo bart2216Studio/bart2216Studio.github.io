@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bart_2216 Studio — Créateur indépendant de jeux d'horreur</title>
+<meta name="description" content="bart_2216 Studio. Créateur indépendant explorant l'atmosphère, la tension et le malaise psychologique. Projets, outils et jeux.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="vignette"></div>
+
+<canvas id="bg-canvas"></canvas>
+
+<header class="site-header">
+  <a href="#top" class="logo">bart_2216<span class="logo-accent">Studio</span></a>
+  <nav class="main-nav">
+    <a href="#work">Projets</a>
+    <a href="#about">Studio</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow"><span class="pulse-dot"></span> studio indépendant — horreur immersive</p>
+      <h1 class="hero-title">
+        <span class="line" data-flicker>Ce qui se cache</span>
+        <span class="line" data-flicker>dans le silence</span>
+        <span class="line accent" data-flicker>vous trouvera.</span>
+      </h1>
+      <p class="hero-sub">
+        bart_2216 Studio conçoit des expériences d'horreur psychologique et des outils bas-niveau pour Windows —
+        de l'atmosphère qui s'installe lentement au routage audio qui tourne en silence à 3h du matin.
+      </p>
+      <div class="hero-actions">
+        <a href="#work" class="btn btn-primary">Voir les projets</a>
+        <a href="https://github.com/bart2216Studio" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="hero-noise-label">SIGNAL&nbsp;LOST</div>
+  </section>
+
+  <!-- STATS / FREQUENCY BAR -->
+  <section class="freq-bar" aria-hidden="true">
+    <div class="freq-track">
+      <span>ATMOSPHÈRE</span><span>·</span><span>TENSION</span><span>·</span><span>MALAISE PSYCHOLOGIQUE</span><span>·</span>
+      <span>ATMOSPHÈRE</span><span>·</span><span>TENSION</span><span>·</span><span>MALAISE PSYCHOLOGIQUE</span><span>·</span>
+      <span>ATMOSPHÈRE</span><span>·</span><span>TENSION</span><span>·</span><span>MALAISE PSYCHOLOGIQUE</span><span>·</span>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" class="work">
+    <div class="section-head">
+      <h2>Journal de projets</h2>
+      <p class="section-sub">Quatre dépôts. Deux mondes : l'horreur, et les outils qui tournent dessous.</p>
+    </div>
+
+    <div class="project-grid">
+
+      <article class="project-card project-card--feature">
+        <div class="card-top">
+          <span class="card-tag">outil audio · C++ / WASAPI</span>
+          <span class="card-lang"><i class="dot dot-cpp"></i> C++</span>
+        </div>
+        <h3>Sound&nbsp;Change</h3>
+        <p class="card-desc">
+          Routeur audio natif pour Windows. Contrôle indépendant du volume par application,
+          coupure instantanée du son, détection automatique des périphériques et recherche rapide —
+          le tout sans droits administrateur, 100&nbsp;% hors-ligne.
+        </p>
+        <ul class="card-features">
+          <li>Volume par application</li>
+          <li>Mute en un clic</li>
+          <li>Fonctionne hors-ligne</li>
+        </ul>
+        <div class="card-foot">
+          <a href="https://github.com/bart2216Studio/Sound-Change" target="_blank" rel="noopener" class="card-link">Voir le dépôt ↗</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="card-top">
+          <span class="card-tag">outil système · C++</span>
+          <span class="card-lang"><i class="dot dot-cpp"></i> C++</span>
+        </div>
+        <h3>ProPriSettings</h3>
+        <p class="card-desc">
+          Utilitaire de configuration système en C++. Dépôt en développement actif —
+          les détails techniques suivront à mesure que le projet mûrit.
+        </p>
+        <div class="card-foot">
+          <a href="https://github.com/bart2216Studio/ProPriSettings" target="_blank" rel="noopener" class="card-link">Voir le dépôt ↗</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="card-top">
+          <span class="card-tag">compression</span>
+          <span class="card-lang"><i class="dot dot-generic"></i> —</span>
+        </div>
+        <h3>VCompress</h3>
+        <p class="card-desc">
+          Outil de compression, en cours de construction. Un projet exploratoire
+          pour réduire le poids sans sacrifier ce qui compte.
+        </p>
+        <div class="card-foot">
+          <a href="https://github.com/bart2216Studio/VCompress" target="_blank" rel="noopener" class="card-link">Voir le dépôt ↗</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="card-top">
+          <span class="card-tag">site · pages</span>
+          <span class="card-lang"><i class="dot dot-html"></i> HTML</span>
+        </div>
+        <h3>bart2216Studio.github.io</h3>
+        <p class="card-desc">
+          Le dépôt GitHub Pages du studio — vitrine technique hébergée directement
+          depuis GitHub, en parallèle du site principal.
+        </p>
+        <div class="card-foot">
+          <a href="https://github.com/bart2216Studio/bart2216Studio.github.io" target="_blank" rel="noopener" class="card-link">Voir le dépôt ↗</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div class="about-grid">
+      <div class="about-text">
+        <h2>Le studio</h2>
+        <p>
+          bart_2216 Studio est un créateur indépendant spécialisé dans les jeux d'horreur immersifs.
+          Le travail explore l'atmosphère, la tension et le malaise psychologique pour livrer
+          des expériences intenses, sombres et mémorables.
+        </p>
+        <p>
+          En parallèle, le studio développe des outils bas-niveau pour Windows — légers, rapides,
+          sans fioritures — parce qu'un bon outil devrait se faire oublier, un peu comme le silence
+          juste avant que quelque chose n'arrive.
+        </p>
+      </div>
+      <div class="about-links">
+        <a class="social-row" href="http://bart2216studio.ddnsfree.com" target="_blank" rel="noopener">
+          <span class="social-label">Site</span>
+          <span class="social-value">bart2216studio.ddnsfree.com</span>
+        </a>
+        <a class="social-row" href="https://github.com/bart2216Studio" target="_blank" rel="noopener">
+          <span class="social-label">GitHub</span>
+          <span class="social-value">@bart2216Studio</span>
+        </a>
+        <a class="social-row" href="https://www.tiktok.com/@bart_2216" target="_blank" rel="noopener">
+          <span class="social-label">TikTok</span>
+          <span class="social-value">@bart_2216</span>
+        </a>
+        <a class="social-row" href="https://www.twitch.tv/bart_2216" target="_blank" rel="noopener">
+          <span class="social-label">Twitch</span>
+          <span class="social-value">bart_2216</span>
+        </a>
+        <a class="social-row" href="https://www.x.com/bart_2216" target="_blank" rel="noopener">
+          <span class="social-label">X</span>
+          <span class="social-value">@bart_2216</span>
+        </a>
+        <a class="social-row" href="https://discord.gg/p2TZ2bbmb4" target="_blank" rel="noopener">
+          <span class="social-label">Discord</span>
+          <span class="social-value">Rejoindre le serveur</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / CTA -->
+  <section id="contact" class="cta">
+    <h2 class="cta-title">Entrez si vous l'osez.</h2>
+    <p class="cta-sub">Retrouvez tout le code, les outils et les prochains projets sur GitHub.</p>
+    <a href="https://github.com/bart2216Studio" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Explorer GitHub ↗</a>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <span>© 2026 bart_2216 Studio</span>
+  <span class="footer-dot">·</span>
+  <span>Fait dans le noir.</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
