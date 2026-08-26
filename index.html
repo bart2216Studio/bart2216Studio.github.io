@@ -1,201 +1,133 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>bart_2216 Studio — Créateur indépendant de jeux d'horreur</title>
-<meta name="description" content="bart_2216 Studio. Créateur indépendant explorant l'atmosphère, la tension et le malaise psychologique. Projets, outils et jeux.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Bloquer le référencement Google -->
+    <meta name="robots" content="noindex, nofollow">
+    
+    <title>bart2216Studio | Mes Projets</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        /* Grille adaptative : 4 colonnes sur PC, 1 sur mobile */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Carte de projet */
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Image verticalisée (gris si pas d'image) */
+        .project-image {
+            width: 100%;
+            aspect-ratio: 9 / 14; /* Format vertical comme sur tes maquettes */
+            background-color: #555555;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-bottom: 16px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.03);
+            background-color: #666666;
+        }
+
+        /* Titre et description */
+        .project-info {
+            text-align: center;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: #aaaaaa;
+            line-height: 1.3;
+        }
+
+        /* Mode mobile (Écran < 768px) */
+        @media (max-width: 768px) {
+            .projects-container {
+                grid-template-columns: 1fr; /* 1 seule colonne */
+                max-width: 320px; /* Largeur type mobile */
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="grain"></div>
-<div class="vignette"></div>
+    <main class="projects-container">
 
-<canvas id="bg-canvas"></canvas>
-
-<header class="site-header">
-  <a href="#top" class="logo">bart_2216<span class="logo-accent">Studio</span></a>
-  <nav class="main-nav">
-    <a href="#work">Projets</a>
-    <a href="#about">Studio</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<main id="top">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <p class="eyebrow"><span class="pulse-dot"></span> studio indépendant — horreur immersive</p>
-      <h1 class="hero-title">
-        <span class="line" data-flicker>Ce qui se cache</span>
-        <span class="line" data-flicker>dans le silence</span>
-        <span class="line accent" data-flicker>vous trouvera.</span>
-      </h1>
-      <p class="hero-sub">
-        bart_2216 Studio conçoit des expériences d'horreur psychologique et des outils bas-niveau pour Windows —
-        de l'atmosphère qui s'installe lentement au routage audio qui tourne en silence à 3h du matin.
-      </p>
-      <div class="hero-actions">
-        <a href="#work" class="btn btn-primary">Voir les projets</a>
-        <a href="https://github.com/bart2216Studio" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
-      </div>
-    </div>
-    <div class="hero-noise-label">SIGNAL&nbsp;LOST</div>
-  </section>
-
-  <!-- STATS / FREQUENCY BAR -->
-  <section class="freq-bar" aria-hidden="true">
-    <div class="freq-track">
-      <span>ATMOSPHÈRE</span><span>·</span><span>TENSION</span><span>·</span><span>MALAISE PSYCHOLOGIQUE</span><span>·</span>
-      <span>ATMOSPHÈRE</span><span>·</span><span>TENSION</span><span>·</span><span>MALAISE PSYCHOLOGIQUE</span><span>·</span>
-      <span>ATMOSPHÈRE</span><span>·</span><span>TENSION</span><span>·</span><span>MALAISE PSYCHOLOGIQUE</span><span>·</span>
-    </div>
-  </section>
-
-  <!-- WORK -->
-  <section id="work" class="work">
-    <div class="section-head">
-      <h2>Journal de projets</h2>
-      <p class="section-sub">Quatre dépôts. Deux mondes : l'horreur, et les outils qui tournent dessous.</p>
-    </div>
-
-    <div class="project-grid">
-
-      <article class="project-card project-card--feature">
-        <div class="card-top">
-          <span class="card-tag">outil audio · C++ / WASAPI</span>
-          <span class="card-lang"><i class="dot dot-cpp"></i> C++</span>
-        </div>
-        <h3>Sound&nbsp;Change</h3>
-        <p class="card-desc">
-          Routeur audio natif pour Windows. Contrôle indépendant du volume par application,
-          coupure instantanée du son, détection automatique des périphériques et recherche rapide —
-          le tout sans droits administrateur, 100&nbsp;% hors-ligne.
-        </p>
-        <ul class="card-features">
-          <li>Volume par application</li>
-          <li>Mute en un clic</li>
-          <li>Fonctionne hors-ligne</li>
-        </ul>
-        <div class="card-foot">
-          <a href="https://github.com/bart2216Studio/Sound-Change" target="_blank" rel="noopener" class="card-link">Voir le dépôt ↗</a>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <div class="card-top">
-          <span class="card-tag">outil système · C++</span>
-          <span class="card-lang"><i class="dot dot-cpp"></i> C++</span>
-        </div>
-        <h3>ProPriSettings</h3>
-        <p class="card-desc">
-          Utilitaire de configuration système en C++. Dépôt en développement actif —
-          les détails techniques suivront à mesure que le projet mûrit.
-        </p>
-        <div class="card-foot">
-          <a href="https://github.com/bart2216Studio/ProPriSettings" target="_blank" rel="noopener" class="card-link">Voir le dépôt ↗</a>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <div class="card-top">
-          <span class="card-tag">compression</span>
-          <span class="card-lang"><i class="dot dot-generic"></i> —</span>
-        </div>
-        <h3>VCompress</h3>
-        <p class="card-desc">
-          Outil de compression, en cours de construction. Un projet exploratoire
-          pour réduire le poids sans sacrifier ce qui compte.
-        </p>
-        <div class="card-foot">
-          <a href="https://github.com/bart2216Studio/VCompress" target="_blank" rel="noopener" class="card-link">Voir le dépôt ↗</a>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <div class="card-top">
-          <span class="card-tag">site · pages</span>
-          <span class="card-lang"><i class="dot dot-html"></i> HTML</span>
-        </div>
-        <h3>bart2216Studio.github.io</h3>
-        <p class="card-desc">
-          Le dépôt GitHub Pages du studio — vitrine technique hébergée directement
-          depuis GitHub, en parallèle du site principal.
-        </p>
-        <div class="card-foot">
-          <a href="https://github.com/bart2216Studio/bart2216Studio.github.io" target="_blank" rel="noopener" class="card-link">Voir le dépôt ↗</a>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="about">
-    <div class="about-grid">
-      <div class="about-text">
-        <h2>Le studio</h2>
-        <p>
-          bart_2216 Studio est un créateur indépendant spécialisé dans les jeux d'horreur immersifs.
-          Le travail explore l'atmosphère, la tension et le malaise psychologique pour livrer
-          des expériences intenses, sombres et mémorables.
-        </p>
-        <p>
-          En parallèle, le studio développe des outils bas-niveau pour Windows — légers, rapides,
-          sans fioritures — parce qu'un bon outil devrait se faire oublier, un peu comme le silence
-          juste avant que quelque chose n'arrive.
-        </p>
-      </div>
-      <div class="about-links">
-        <a class="social-row" href="http://bart2216studio.ddnsfree.com" target="_blank" rel="noopener">
-          <span class="social-label">Site</span>
-          <span class="social-value">bart2216studio.ddnsfree.com</span>
+        <!-- Projet 1 : Sound-Change -->
+        <a href="https://github.com/bart2216Studio/Sound-Change" class="project-card" target="_blank">
+            <!-- Mets le lien de ton image dans src="...", sinon la case reste grise -->
+            <img src="" alt="Sound-Change" class="project-image">
+            <div class="project-info">
+                <h2 class="project-title">Sound-Change</h2>
+                <p class="project-desc">Courte description de ton projet Sound-Change ici.</p>
+            </div>
         </a>
-        <a class="social-row" href="https://github.com/bart2216Studio" target="_blank" rel="noopener">
-          <span class="social-label">GitHub</span>
-          <span class="social-value">@bart2216Studio</span>
-        </a>
-        <a class="social-row" href="https://www.tiktok.com/@bart_2216" target="_blank" rel="noopener">
-          <span class="social-label">TikTok</span>
-          <span class="social-value">@bart_2216</span>
-        </a>
-        <a class="social-row" href="https://www.twitch.tv/bart_2216" target="_blank" rel="noopener">
-          <span class="social-label">Twitch</span>
-          <span class="social-value">bart_2216</span>
-        </a>
-        <a class="social-row" href="https://www.x.com/bart_2216" target="_blank" rel="noopener">
-          <span class="social-label">X</span>
-          <span class="social-value">@bart_2216</span>
-        </a>
-        <a class="social-row" href="https://discord.gg/p2TZ2bbmb4" target="_blank" rel="noopener">
-          <span class="social-label">Discord</span>
-          <span class="social-value">Rejoindre le serveur</span>
-        </a>
-      </div>
-    </div>
-  </section>
 
-  <!-- CONTACT / CTA -->
-  <section id="contact" class="cta">
-    <h2 class="cta-title">Entrez si vous l'osez.</h2>
-    <p class="cta-sub">Retrouvez tout le code, les outils et les prochains projets sur GitHub.</p>
-    <a href="https://github.com/bart2216Studio" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Explorer GitHub ↗</a>
-  </section>
+        <!-- Projet 2 -->
+        <a href="#" class="project-card">
+            <img src="" alt="Projet 2" class="project-image">
+            <div class="project-info">
+                <h2 class="project-title">Titre Projet 2</h2>
+                <p class="project-desc">Courte description du second projet.</p>
+            </div>
+        </a>
 
-</main>
+        <!-- Projet 3 -->
+        <a href="#" class="project-card">
+            <img src="" alt="Projet 3" class="project-image">
+            <div class="project-info">
+                <h2 class="project-title">Titre Projet 3</h2>
+                <p class="project-desc">Courte description du troisième projet.</p>
+            </div>
+        </a>
 
-<footer class="site-footer">
-  <span>© 2026 bart_2216 Studio</span>
-  <span class="footer-dot">·</span>
-  <span>Fait dans le noir.</span>
-</footer>
+        <!-- Projet 4 -->
+        <a href="#" class="project-card">
+            <img src="" alt="Projet 4" class="project-image">
+            <div class="project-info">
+                <h2 class="project-title">Titre Projet 4</h2>
+                <p class="project-desc">Courte description du quatrième projet.</p>
+            </div>
+        </a>
 
-<script src="script.js"></script>
+    </main>
+
 </body>
 </html>
