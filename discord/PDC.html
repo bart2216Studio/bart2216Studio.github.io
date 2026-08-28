@@ -1,1 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Politique de Confidentialité - bart_2216 Studio</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --bg-card: #171a23;
+    --border: #262a36;
+    --text: #e4e6eb;
+    --text-dim: #9aa0ac;
+    --accent: #5865F2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrapper {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  header h1 {
+    font-size: 1.9rem;
+    margin: 0 0 8px;
+    color: #fff;
+  }
+  header p {
+    color: var(--text-dim);
+    margin: 4px 0;
+    font-size: 0.95rem;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(88,101,242,0.15);
+    color: var(--accent);
+    border: 1px solid rgba(88,101,242,0.4);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    margin-top: 10px;
+  }
+  section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 18px;
+  }
+  section h2 {
+    font-size: 1.15rem;
+    margin: 0 0 12px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  section h2 .num {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  section p, section li {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+  }
+  ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+  li { margin-bottom: 6px; }
+  strong { color: var(--text); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+  }
+  th {
+    color: #fff;
+    font-weight: 600;
+  }
+  footer {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrapper">
 
+  <header>
+    <h1>Politique de Confidentialité</h1>
+    <p>Applicable à l'ensemble des bots développés et exploités par</p>
+    <p><strong>bart_2216 Studio</strong></p>
+    <span class="badge">Dernière mise à jour : 28 août 2026</span>
+  </header>
+
+  <section>
+    <h2><span class="num">1.</span> Introduction</h2>
+    <p><strong>bart_2216 Studio</strong>, studio indépendant appartenant à <strong>bart_2216</strong>, attache une importance particulière à la protection des données de ses utilisateurs. Cette Politique de Confidentialité explique quelles données sont collectées par nos Bots Discord, pourquoi, comment elles sont utilisées, stockées, et quels sont vos droits.</p>
+    <p>En utilisant l'un de nos Bots, vous acceptez les pratiques décrites dans ce document.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">2.</span> Données collectées</h2>
+    <p>Selon les fonctionnalités activées sur le serveur, un Bot peut collecter et stocker :</p>
+    <table>
+      <tr><th>Type de donnée</th><th>Exemple</th></tr>
+      <tr><td>Identifiants techniques</td><td>ID utilisateur Discord, ID serveur, ID salon, ID rôle</td></tr>
+      <tr><td>Données de configuration</td><td>Paramètres définis par les administrateurs (panneaux /setup, salons, rôles configurés)</td></tr>
+      <tr><td>Données d'activité</td><td>Niveaux/XP, solde de monnaie virtuelle, historique de tickets, statistiques vocales temporaires</td></tr>
+      <tr><td>Contenu généré</td><td>Messages envoyés aux Bots via commandes, contenu des tickets créés</td></tr>
+      <tr><td>Logs de modération</td><td>Avertissements, sanctions, actions de modération enregistrées</td></tr>
+    </table>
+    <p>Nous ne collectons <strong>jamais</strong> vos mots de passe, données bancaires, ou informations personnelles en dehors de celles rendues publiques par votre utilisation de Discord.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">3.</span> Finalité de la collecte</h2>
+    <ul>
+      <li>Assurer le bon fonctionnement des fonctionnalités du Bot (économie, niveaux, tickets, modération, etc.) ;</li>
+      <li>Permettre aux administrateurs de serveur de configurer et personnaliser le Bot ;</li>
+      <li>Générer des statistiques internes d'utilisation et de performance ;</li>
+      <li>Assurer la sécurité et prévenir les abus (spam, exploitation de failles).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">4.</span> Stockage et sécurité</h2>
+    <p>Les données sont stockées dans une base de données sécurisée, isolée par serveur (guild) et par Bot. Les informations sensibles (comme les jetons d'authentification internes) sont chiffrées. Des mesures raisonnables sont mises en œuvre pour protéger les données contre tout accès non autorisé, altération ou perte.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">5.</span> Partage des données</h2>
+    <p>bart_2216 Studio <strong>ne vend, ne loue et ne partage jamais</strong> vos données avec des tiers à des fins commerciales. Les données peuvent uniquement être communiquées :</p>
+    <ul>
+      <li>À Discord Inc., dans le cadre normal du fonctionnement de l'API Discord ;</li>
+      <li>Si la loi l'exige (réquisition judiciaire, obligation légale) ;</li>
+      <li>Aux administrateurs du serveur concerné, pour les données de configuration et de modération liées à leur propre serveur.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">6.</span> Durée de conservation</h2>
+    <p>Les données sont conservées tant que le Bot reste présent sur un serveur et que ces données restent utiles au fonctionnement du service. En cas de retrait du Bot d'un serveur, les données associées à ce serveur peuvent être automatiquement supprimées après une période raisonnable, ou sur demande anticipée.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">7.</span> Vos droits</h2>
+    <p>Conformément aux principes de protection des données (dont le RGPD pour les utilisateurs européens), vous disposez des droits suivants concernant vos données :</p>
+    <ul>
+      <li><strong>Droit d'accès :</strong> savoir quelles données sont stockées vous concernant ;</li>
+      <li><strong>Droit de rectification :</strong> corriger une donnée inexacte ;</li>
+      <li><strong>Droit à l'effacement :</strong> demander la suppression de vos données ;</li>
+      <li><strong>Droit d'opposition :</strong> vous opposer à certains traitements.</li>
+    </ul>
+    <p>Pour exercer l'un de ces droits, contactez bart_2216 Studio via le serveur Discord officiel de support (voir section 9).</p>
+  </section>
+
+  <section>
+    <h2><span class="num">8.</span> Modification de la politique</h2>
+    <p>Cette Politique de Confidentialité peut être mise à jour à tout moment afin de refléter les évolutions des Bots ou des obligations légales. Les modifications importantes seront communiquées via les canaux officiels de bart_2216 Studio. La date de dernière mise à jour est indiquée en haut de cette page.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">9.</span> Contact</h2>
+    <p>Pour toute question relative à cette Politique de Confidentialité ou à vos données personnelles, contactez <strong>bart_2216 Studio</strong> via le serveur Discord officiel du studio.</p>
+  </section>
+
+  <footer>
+    © 2026 bart_2216 Studio — Tous droits réservés.
+  </footer>
+
+</div>
+</body>
+</html>
