@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zinoxe — Mods</title>
+<style>
+  :root{
+    --bg:#0e0f13; --card:#181a20; --accent:#ff3b3b; --text:#eee; --muted:#9a9aa3;
+    box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'Segoe UI',system-ui,sans-serif;
+    padding:24px 16px 60px;
+  }
+  header{text-align:center; margin-bottom:32px;}
+  header h1{
+    font-size:2rem; margin:0; letter-spacing:1px;
+    color:var(--accent); text-transform:uppercase;
+  }
+  header p{color:var(--muted); margin-top:6px;}
+  .grid{
+    display:grid; gap:20px; max-width:900px; margin:0 auto;
+    grid-template-columns:1fr;
+  }
+  @media(min-width:640px){ .grid{grid-template-columns:1fr 1fr;} }
+  .card{
+    background:var(--card); border-radius:12px; overflow:hidden;
+    border:1px solid #2a2c34; display:flex; flex-direction:column;
+  }
+  .video-wrap{position:relative; width:100%; padding-top:56.25%; background:#000;}
+  .video-wrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0;}
+  .card-body{padding:14px 16px 18px;}
+  .card-body h2{font-size:1.05rem; margin:0 0 10px;}
+  .mod-link{
+    display:inline-block; color:var(--accent); font-weight:600;
+    text-decoration:none; border-bottom:1px solid var(--accent);
+  }
+  .mod-link:hover{opacity:.8;}
+  .empty{
+    max-width:900px; margin:0 auto; text-align:center; color:var(--muted);
+    padding:40px 16px; border:1px dashed #3a3c46; border-radius:10px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Zinoxe — Mods</h1>
+  <p>Retrouve la vidéo et le lien de téléchargement de chaque mod</p>
+</header>
+
+<div class="grid">
+  <div class="card">
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/Z-s7MTKyBsM" title="Killer Caution bot" allowfullscreen></iframe>
+    </div>
+    <div class="card-body">
+      <h2>Killer Caution bot</h2>
+      <a class="mod-link" href="https://gamebanana.com/mods/603190" target="_blank" rel="noopener">Telecharger le mod</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
