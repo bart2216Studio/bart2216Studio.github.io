@@ -115,9 +115,30 @@
     } else if (children) return findRowArray(children, depth + 1);
   }
 
+  function scanModules(re) {
+    const out = [];
+    const mods = vendetta.metro.modules || {};
+    for (const id in mods) {
+      try {
+        const m = mods[id];
+        if (!m || !m.isInitialized) continue;
+        const e = m.publicModule && m.publicModule.exports;
+        if (!e) continue;
+        for (const c of [e, e.default]) {
+          if (c && (typeof c === "function" || typeof c === "object")) {
+            const n = c.displayName || c.name;
+            if (typeof n === "string" && re.test(n)) out.push(n + "#" + id);
+          }
+        }
+      } catch (err) {}
+    }
+    return Array.from(new Set(out)).slice(0, 80);
+  }
+
   // ---- réglages ----
   function Settings() {
     const items = useExceptions();
+    const [scan, setScan] = React.useState("");
     return h(
       RN.ScrollView,
       null,
@@ -138,6 +159,23 @@
               )
             )
           : h(FormRow, { label: "Aucune exception", subLabel: "Appui long sur un salon → Add to exception" })
+      ),
+      h(
+        FormSection,
+        { title: "Diagnostic" },
+        h(FormRow, {
+          label: "Debug (toasts) : " + (storage.debug ? "ON" : "OFF"),
+          onPress: () => { storage.debug = !storage.debug; },
+        }),
+        h(FormDivider),
+        h(FormRow, {
+          label: "Scanner la liste des serveurs",
+          subLabel: "Cherche les composants Guild*",
+          onPress: () => setScan(scanModules(/Guild/).join("\n") || "rien trouvé"),
+        }),
+        h(RN.Text, { selectable: true, style: { color: "#aaa", padding: 12 } }, scan),
+        h(RN.Text, { selectable: true, style: { color: "#aaa", padding: 12 } },
+          "Clés de menus vues :\n" + (storage.seenKeys || []).join("\n"))
       )
     );
   }
@@ -146,20 +184,26 @@
 
   return {
     onLoad: function () {
-      // 1) bouton dans le menu du salon
+      if (storage.debug === undefined) storage.debug = true;
+      // 1) bouton dans le menu du salon (+ diagnostic)
       patches.push(
         before("openLazy", LazyActionSheet, function (args) {
           const component = args[0];
           const key = String(args[1] || "");
           const props = args[2] || {};
-          if (!/Channel/.test(key) || !/LongPress|ActionSheet/.test(key) || /Message/.test(key)) return;
+          if (!storage.seenKeys) storage.seenKeys = [];
+          if (storage.seenKeys.indexOf(key) < 0 && storage.seenKeys.length < 40) storage.seenKeys.push(key);
+          if (props.message) return;
           const channel = props.channel || (props.channelId && ChannelStore.getChannel(props.channelId));
+          if (storage.debug) showToast("SE key=" + key + " salon=" + (channel ? "oui" : "non"));
           if (!channel || !channel.guild_id) return;
+          if (!component || typeof component.then !== "function") return;
 
           component.then(function (instance) {
             const unpatch = after("default", instance, function (_, tree) {
               React.useEffect(function () { return function () { unpatch(); }; }, []);
               const rows = findRowArray(tree);
+              if (storage.debug) showToast("SE lignes: " + (rows ? rows.length : "aucune"));
               if (!rows) return;
               const sample = rows.find(isRow);
               const onPress = function () {
