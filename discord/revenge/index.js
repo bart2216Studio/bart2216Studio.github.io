@@ -132,7 +132,7 @@
         }
       } catch (err) {}
     }
-    return Array.from(new Set(out)).slice(0, 80);
+    return Array.from(new Set(out)).filter((n) => !/^(use|get|is|are|compute|track|transition)/.test(n)).slice(0, 40);
   }
 
   // ---- réglages ----
@@ -168,14 +168,20 @@
           onPress: () => { storage.debug = !storage.debug; },
         }),
         h(FormDivider),
-        h(FormRow, {
-          label: "Scanner la liste des serveurs",
-          subLabel: "Cherche les composants Guild*",
-          onPress: () => setScan(scanModules(/Guild/).join("\n") || "rien trouvé"),
-        }),
-        h(RN.Text, { selectable: true, style: { color: "#aaa", padding: 12 } }, scan),
         h(RN.Text, { selectable: true, style: { color: "#aaa", padding: 12 } },
-          "Clés de menus vues :\n" + (storage.seenKeys || []).join("\n"))
+          "Clés de menus vues :\n" + ((storage.seenKeys || []).join("\n") || "(aucune)")),
+        h(FormDivider),
+        h(FormRow, {
+          label: "Scanner les composants",
+          subLabel: "GuildsBar, MP non lus, menus de salon",
+          onPress: () =>
+            setScan(
+              "== GuildsBar ==\n" + (scanModules(/GuildsBar|GuildsList|GuildsNav/).join("\n") || "rien") +
+              "\n\n== MP non lus ==\n" + (scanModules(/Unread|DMsBar|DMList|PrivateChannels/).join("\n") || "rien") +
+              "\n\n== Menu salon ==\n" + (scanModules(/ChannelLongPress|ChannelActionSheet|ChannelContextMenu|ChannelActions/).join("\n") || "rien")
+            ),
+        }),
+        h(RN.Text, { selectable: true, style: { color: "#aaa", padding: 12 } }, scan)
       )
     );
   }
