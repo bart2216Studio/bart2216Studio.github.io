@@ -1,7 +1,0 @@
-{
-    "name": "Server Exceptions",
-    "description": "Ajoute des salons en exception : ils gardent un raccourci non lu en haut de la liste des serveurs, même si le serveur est muté.",
-    "authors": [{ "name": "bart_2216" }],
-    "main": "index.js",
-    "hash": "3"
-}
