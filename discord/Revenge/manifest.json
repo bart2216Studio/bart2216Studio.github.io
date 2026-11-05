@@ -1,7 +1,0 @@
-{
-    "name": "Server Count",
-    "description": "Affiche le nombre total de serveurs rejoints tout en bas de la barre des serveurs.",
-    "authors": [{ "name": "bart_2216" }],
-    "main": "index.js",
-    "hash": "1"
-}
