@@ -3,5 +3,5 @@
     "description": "Keeps Discord's own audio player playing when you leave the app. Language: English / Français.",
     "authors": [{ "name": "bart_2216" }],
     "main": "index.js",
-    "hash": "1"
+    "hash": "2"
 }
