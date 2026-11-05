@@ -1,7 +1,0 @@
-{
-    "name": "Server Count",
-    "description": "Shows the total number of servers you have joined at the bottom of the server list.",
-    "authors": [{ "name": "bart_2216 Studio" }],
-    "main": "index.js",
-    "hash": "1"
-}
