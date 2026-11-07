@@ -1,0 +1,7 @@
+{
+    "name": "Twitch Status",
+    "description": "Shows your Twitch live status on your Discord profile (title, game, viewers, thumbnail, button). By bart_2216 Studio. Language: English / Français.",
+    "authors": [{ "name": "bart_2216 Studio" }],
+    "main": "index.js",
+    "hash": "1"
+}
