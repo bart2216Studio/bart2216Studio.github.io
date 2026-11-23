@@ -1,5 +1,5 @@
 (function () {
-  const { findByProps } = vendetta.metro;
+  const { findByProps, findByStoreName } = vendetta.metro;
   const { React, ReactNative: RN } = vendetta.metro.common;
   const FluxDispatcher = vendetta.metro.common.FluxDispatcher || findByProps("dispatch", "subscribe");
   const { storage } = vendetta.plugin;
@@ -26,7 +26,7 @@
   const cfg = (k) => (storage[k] === undefined ? DEFAULTS[k] : storage[k]);
 
   // ---------- état affiché dans les réglages ----------
-  const status = { state: "idle", info: "", last: 0 };
+  const status = { state: "idle", info: "", last: 0, seen: "-", count: 0 };
   const subs = new Set();
   const notify = () => subs.forEach((f) => f());
   function useStatus() {
@@ -80,30 +80,15 @@
   }
 
   // ---------- activité Discord ----------
-  let thumbCache = { key: "", id: null };
-
-  async function getThumbAsset(appId, url) {
-    const key = appId + "|" + url;
-    if (thumbCache.key === key) return thumbCache.id;
-    try {
-      const u = findByProps("fetchAssetIds");
-      if (!u) return null;
-      const ids = await u.fetchAssetIds(appId, [url]);
-      thumbCache = { key: key, id: (ids && ids[0]) || null };
-      return thumbCache.id;
-    } catch (e) {
-      return null;
-    }
-  }
-
   async function buildActivity(s) {
     const login = s.user_login;
     const watchUrl = "https://twitch.tv/" + login;
     const act = {
-      name: String(cfg("activityName") || s.user_name || login).slice(0, 128),
+      name: String(cfg("activityName") || "Twitch").slice(0, 128),
       type: 1,
       url: watchUrl,
       flags: 0,
+      created_at: Date.now(),
     };
     if (cfg("showTitle") && s.title) act.details = String(s.title).slice(0, 128);
     const parts = [];
@@ -112,16 +97,14 @@
     if (parts.length) act.state = parts.join(" • ").slice(0, 128);
     if (cfg("showElapsed") && s.started_at) act.timestamps = { start: Date.parse(s.started_at) };
 
+    // la clé "twitch:<chaîne>" affiche la miniature du live sans Application ID
+    if (cfg("showThumbnail")) {
+      act.assets = { large_image: "twitch:" + login, large_text: String(s.title || "").slice(0, 128) };
+    }
+
     const appId = String(cfg("appId") || "").trim();
     if (appId) {
       act.application_id = appId;
-      if (cfg("showThumbnail") && s.thumbnail_url) {
-        const thumb =
-          s.thumbnail_url.replace("{width}", "440").replace("{height}", "248") +
-          "?t=" + Math.floor(Date.now() / 300000);
-        const id = await getThumbAsset(appId, thumb);
-        if (id) act.assets = { large_image: id, large_text: String(s.title || "").slice(0, 128) };
-      }
       if (cfg("showButton")) {
         act.buttons = [String(cfg("buttonLabel") || "Watch on Twitch").slice(0, 32)];
         act.metadata = { button_urls: [watchUrl] };
@@ -139,6 +122,31 @@
         socketId: "TwitchStatus@bart_2216Studio",
       });
     } catch (e) {}
+  }
+
+  // vérifie si le store de Discord contient bien l'activité envoyée
+  async function verifyActivity(url) {
+    await new Promise(function (r) { setTimeout(r, 800); });
+    try {
+      const me = findByStoreName("UserStore").getCurrentUser().id;
+      const lists = [];
+      const PS = findByStoreName("PresenceStore");
+      if (PS && PS.getActivities) lists.push(PS.getActivities(me));
+      const LS = findByStoreName("LocalActivityStore");
+      if (LS && LS.getActivities) lists.push(LS.getActivities());
+      let total = 0;
+      let found = false;
+      lists.forEach(function (l) {
+        (l || []).forEach(function (a) {
+          total++;
+          if (a && a.url === url) found = true;
+        });
+      });
+      status.seen = lists.length ? (found ? "yes" : "no") : "unknown";
+      status.count = total;
+    } catch (e) {
+      status.seen = "unknown";
+    }
   }
 
   // ---------- boucle de vérification ----------
@@ -162,10 +170,13 @@
       }
       const s = await fetchStream(login);
       if (s && s.type === "live") {
-        setActivity(await buildActivity(s));
+        const act = await buildActivity(s);
+        setActivity(act);
+        await verifyActivity(act.url);
         setStatus("live", s.title || "");
       } else {
         setActivity(null);
+        status.seen = "-";
         setStatus("offline");
       }
     } catch (e) {
@@ -243,6 +254,15 @@
         { title: t("État", "Status") },
         h(FormRow, { label: labels[st.state] || st.state, subLabel: (st.info ? st.info + "\n" : "") + t("Dernière vérif : ", "Last check: ") + ago }),
         h(FormDivider),
+        h(FormRow, {
+          label: t("Statut reçu par Discord : ", "Status received by Discord: ") +
+            (st.seen === "yes" ? "✓ (" + st.count + ")" : st.seen === "no" ? "✗" : "?"),
+          subLabel: t(
+            "✗ = Discord n'a pas pris l'activité. Vérifie le partage d'activité dans la confidentialité de Discord.",
+            "✗ = Discord did not take the activity. Check activity sharing in Discord's privacy settings."
+          ),
+        }),
+        h(FormDivider),
         h(FormRow, { label: t("Vérifier maintenant", "Check now"), onPress: check }),
         h(FormDivider),
         h(FormRow, {
@@ -278,11 +298,11 @@
         h(FormDivider),
         h(Toggle, { k: "showElapsed", label: t("Temps écoulé", "Elapsed time") }),
         h(FormDivider),
-        h(Toggle, { k: "showThumbnail", label: t("Miniature (Application ID requis)", "Thumbnail (Application ID needed)") }),
+        h(Toggle, { k: "showThumbnail", label: t("Miniature du live", "Stream thumbnail") }),
         h(FormDivider),
         h(Toggle, { k: "showButton", label: t("Bouton (Application ID requis)", "Button (Application ID needed)") }),
         h(Field, { label: t("Texte du bouton", "Button label"), value: cfg("buttonLabel"), onChange: function (v) { storage.buttonLabel = v; } }),
-        h(Field, { label: t("Nom affiché (vide = nom de la chaîne)", "Displayed name (empty = channel name)"), value: cfg("activityName"), onChange: function (v) { storage.activityName = v; } }),
+        h(Field, { label: t("Nom affiché (vide = Twitch)", "Displayed name (empty = Twitch)"), value: cfg("activityName"), onChange: function (v) { storage.activityName = v; } }),
         h(Field, { label: "Discord Application ID (" + t("optionnel", "optional") + ")", numeric: true, value: cfg("appId"), onChange: function (v) { storage.appId = v.replace(/[^0-9]/g, ""); } }),
         h(RN.Text, { style: { color: "#888", fontSize: 11, paddingHorizontal: 16, paddingBottom: 8 } },
           t("Crée une application sur discord.com/developers pour la miniature et le bouton.",
